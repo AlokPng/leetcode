@@ -9,15 +9,20 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-            ListNode *temp = head;
-        unordered_map<ListNode*,int>hash;
-        while(temp != NULL){
-            hash[temp]++;
-            if(hash[temp] > 1){
+              if (!head) 
+            return false;
+        
+        ListNode *slow = head, *fast = head;
+        
+        while (fast->next && fast->next->next) {  
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast)                    
                 return true;
-            }
-            temp = temp->next;
-            
         }
-       return false; }
+        
+        return false;                         
+    }
+        
+    
 };
